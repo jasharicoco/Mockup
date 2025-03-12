@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    transition: background-image 0.3s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    /*Centrerahorisontellt*/align-items: center;
+    /*Centreravertikalt*/gap: 20px;
+    /*Avståndmellandatumochklocka*/position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.575);
+    /*Svartgenomskinligbakgrund*/padding: 4px 40px;
+    border-radius: 30px;
+    /*Rundadehörn*/font-size: 0.9rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    /*Vittext*/;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+
+.clock {
+    font-weight: bold; /* Fet text */
+}
+
+.date {
+    font-weight: normal; /* Vanlig text */
+}
+
+/* Rubrik för varje tabell */
+.box h2 {
+    font-size: 1.6rem; /* Större fontstorlek */
+    text-align: center; /* Centrerad text */
+    width: auto; /* Gör bredden automatiskt */
+    margin-top: 20px; /* Flytta rubriken lite längre ner i tabellen */
+    margin-bottom: 10px; /* Lite avstånd under rubriken */
+    font-weight: 400; /* Gör texten mycket smalare */
+}
+
+
+
+#change-bg-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Titel */
+#editable-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#editable-title:hover {
+    color: #007bffb9;
+}
+
+/* Dashboard container */
+.container {
+    text-align: center;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: center; /* Centrerar innehållet horisontellt */
+    flex-wrap: wrap; /* Gör så att innehållet inte blir för trångt om det finns flera boxar */
+    gap: 20px; /* Ger ett mellanrum mellan boxarna */
+    margin: 0 auto; /* Centrerar innehållet på skärmen */
+}
+
+/* Box styling */
+.box {
+    background-color: rgba(240, 240, 240, 0.287);
+    border-radius: 20px;
+    width: 300px;
+    /*Justerabreddenpåboxarna*/padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    opacity: 0.8;
+}
+
+input, button, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Snabblänkar */
+#links-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#links-list li {
+    padding: 10px;
+    background-color: #f0f0f0; /* Bakgrundsfärg för varje rad */
+    border-radius: 15px; /* Rundade hörn på varje rad */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Mellanrum mellan varje länk */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Skugga för djup */
+    transition: background-color 0.3s; /* Gör hover-effekten mjukare */
+}
+
+#links-list li:hover {
+    background-color: #e0e0e0; /* Bakgrundsfärgen ändras vid hover */
+}
+
+#links-list li:last-child {
+    margin-bottom: 0; /* Tar bort extra mellanrum på sista länken */
+}
+
+#links-list a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: #333; /* Standard textfärg */
+}
+
+#links-list a i {
+    font-size: 1rem; /* Storlek på ikonen */
+    padding: 10px;
+    border-radius: 50%; /* Rundad form på ikonen */
+    margin-right: 10px; /* Mellanrum mellan ikon och text */
+    background-color: #e0e0e0; /* Bakgrundsfärg på ikonen */
+    transition: background-color 0.3s, color 0.3s; /* Gör hover-effekten mjukare */
+}
+
+#links-list a i:hover {
+    background-color: #333; /* Bakgrundsfärgen ändras vid hover */
+    color: #fff; /* Textfärgen ändras vid hover */
+}
+
+
+/* YouTube Färger */
+#links-list a[href="https://www.youtube.com"] i {
+    background-color: #FF0000; /* YouTube röd */
+    color: white; /* Vit ikon */
+}
+
+#links-list a[href="https://www.youtube.com"]:hover i {
+    background-color: #cc0000; /* Mörkare röd vid hover */
+}
+
+/* GitHub Färger */
+#links-list a[href="https://github.com"] i {
+    background-color: #333; /* GitHub svart */
+    color: white; /* Vit ikon */
+}
+
+#links-list a[href="https://github.com"]:hover i {
+    background-color: #444; /* Lättare svart vid hover */
+}
+
+/* Exempel Länk */
+#links-list a[href="https://www.example.com"] i {
+    background-color: #4CAF50; /* Standard grön */
+    color: white; /* Vit ikon */
+}
+
+#links-list a[href="https://www.example.com"]:hover i {
+    background-color: #45a049; /* Mörkare grön vid hover */
+}
+
+/* Notes Box */
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Button Styles */
+button {
+    position: relative; /* Behåll relativ position för att placera knappen inom tabellen */
+    background-color: #ffffff48; /* Behåll bakgrundens genomskinlighet */
+    color: #ffffff; /* Gör texten helt vit */
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem; /* Mindre textstorlek */
+    padding: 7px 10px; /* Minska padding för att göra knappen mindre */
+    margin-top: 20px; /* Justera för att placera knappen längre ner i tabellen */
+    width: 150px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+
+
+button img {
+    width: 15px;
+    height: 15px;
+    line-height: 10px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #d3d3d3;
+}
+
+.nybildbtn {
+    border-radius: 50px; /* Keep this one */
+    background: rgba(255, 255, 255, 0.575);
+    color: #000000; /* Svart text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    width: auto;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .dashboard {
+        grid-template-columns: repeat(3, 1fr); /* Tre kolumner på mindre skärmar */
+    }
+}
+
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr); /* Två kolumner på ännu mindre skärmar */
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr; /* En kolumn på små skärmar, t.ex. telefoner */
+    }
+}
+
+#weather {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-day {
+    display: flex;
+    align-items: center; /* Justera för att hålla text och ikon i linje vertikalt */
+    margin-bottom: 15px; /* Lägg till lite utrymme mellan dagarna */
+    background-color: #f0f0f0; /* Bakgrundsfärg */
+    border-radius: 15px; /* Runda hörn */
+    padding: 10px 15px; /* Minska padding för att minska höjden */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Skugga för djup */
+    height: auto; /* Låter höjden anpassas efter innehållet */
+    min-height: 70px; /* Sätt ett minimumvärde på höjden för att hålla ett bra avstånd */
+}
+
+.weather-icon {
+    margin-right: 15px; /* Utrymme mellan ikonen och texten */
+}
+
+.weather-icon img {
+    width: 40px; /* Sätt en mindre bredd för ikonen */
+    height: 40px; /* Sätt en mindre höjd för ikonen */
+}
+
+.weather-info h3 {
+    margin: 0; /* Ta bort standardmarginaler */
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.weather-info div {
+    display: flex;
+    margin-top: 5px; /* Lite utrymme mellan h3 och spansklarna */
+}
+
+.weather-info span {
+    margin-right: 10px; /* Utrymme mellan temperatur och väderbeskrivning */
+    font-size: 0.9em;
+    background-color: #ffffff; /* Bakgrundsfärg för varje span */
+    padding: 5px 10px; /* Utrymme inom varje span */
+    border-radius: 10px; /* Runda kanter för varje span */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Liten skugga för att skapa djup */
+    display: inline-block; /* Så att de ligger på rad */
+    transition: background-color 0.3s; /* Gör bakgrundsändringen mjuk vid hover */
+}
+
+.weather-info span:hover {
+    background-color: #e0e0e0; /* Bakgrundsfärgen ändras vid hover */
+}
+
+
+/* RADIO */
+#radio-list {
+    list-style-type: none; /* Ta bort punkterna från listan */
+    padding-left: 0;
+}
+
+#radio-list li {
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Ordna elementen vertikalt */
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.channel-row {
+    display: flex;
+    flex-direction: column; /* Ordna bilder, text och ljudspelare vertikalt */
+    width: 100%;
+    align-items: flex-start;
+}
+
+.channel-info-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Avstånd mellan bild och programtext */
+}
+
+.channel-info {
+    margin-left: 10px;
+}
+
+.channel-img {
+    width: 40px; /* Ändra bildstorleken om det behövs */
+    height: auto;
+    border-radius: 10px; /* Rundade hörn på bilden */
+}
+
+.audio-wrapper {
+    margin-top: 10px; /* Avstånd mellan programtext och ljudspelare */
+    width: 100%; /* Se till att ljudspelaren tar upp full bredd */
+}
+
+.channel-img {
+    width: 40px; /* Ändra bildstorleken om det behövs */
+    height: auto;
+}
+
+audio {
+    width: 100%; /* Sätt ljudspelaren till att vara lika bred som föräldraelementet */
+    border-radius: 10px; /* Valfritt, för att runda hörnen på ljudspelaren */
+}
+
+.channel-info a {
+    color: inherit; /* Ärver färgen från föräldraelementet */
+    text-decoration: none; /* Tar bort understrykningen */
+    font-weight: bold; /* Behåller fetstil om önskat */
+}
