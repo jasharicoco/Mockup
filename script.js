@@ -28,12 +28,14 @@ function addLink() {
         return;
     }
 
-    // Skapa nytt listobjekt
-    const newLink = document.createElement("li");
-    newLink.innerHTML = `<a href="${linkURL}" target="_blank">${linkName}</a> 
-                         <button onclick="removeLink(this)">❌</button>`;
+    // Skapa nytt listobjekt med samma struktur som befintliga länkar
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `
+        <a href="${linkURL}" target="_blank"><i class="fas fa-link"></i> ${linkName}</a>
+        <button class="delete-btn" onclick="removeLink(this)">×</button>
+    `;
 
-    linksList.appendChild(newLink);
+    linksList.appendChild(listItem);
 
     // Spara i LocalStorage
     saveLink(linkName, linkURL);
@@ -73,8 +75,10 @@ function loadLinks() {
 
     links.forEach(link => {
         const listItem = document.createElement("li");
-        listItem.innerHTML = `<a href="${link.url}" target="_blank">${link.name}</a> 
-                              <button onclick="removeLink(this)">❌</button>`;
+        listItem.innerHTML = `
+            <a href="${link.url}" target="_blank"><i class="fas fa-link"></i> ${link.name}</a>
+            <button class="delete-btn" onclick="removeLink(this)">×</button>
+        `;
         linksList.appendChild(listItem);
     });
 }

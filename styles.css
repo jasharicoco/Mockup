@@ -60,7 +60,7 @@ body {
 
 
 #change-bg-btn:hover {
-    background-color: #0056b3;
+    background-color: #b30000;
 }
 
 /* Titel */
@@ -74,7 +74,7 @@ body {
 }
 
 #editable-title:hover {
-    color: #007bffb9;
+    color: #ff008cb9;
 }
 
 /* Dashboard container */
@@ -192,10 +192,46 @@ input, button, textarea {
     background-color: #45a049; /* Mörkare grön vid hover */
 }
 
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px; /* Superliten knapp */
+    height: 15px;
+    font-size: 10px; /* Mindre text */
+    padding: 0;
+    background: rgb(255, 255, 255);
+    color: rgb(66, 66, 66);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Se till att varje listobjekt är positionerat relativt */
+#links-list li {
+    position: relative; /* Behövs för att delete-knappen ska kunna placeras absolut */
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
 /* Notes Box */
 textarea {
     height: 150px;
     resize: vertical;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 /* Button Styles */

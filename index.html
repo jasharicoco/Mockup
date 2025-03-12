@@ -18,26 +18,36 @@
 
     <section>
     <div class="dashboard">
-        <!-- Snabblänkar -->
-        <div class="box" id="links-box">
-            <h2>Snabblänkar</h2>
-            <ul id="links-list">
-                <li><a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-                <li><a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
-                <li><a href="https://www.example.com" target="_blank"><i class="fas fa-link"></i> Exempel Länk</a></li>
-            </ul>
-            
-            <!-- Knapp för att öppna formuläret -->
-            <button id="show-form-btn"><img src="icons/add.ico" alt="Add link"> Lägg till länk</button>
+<!-- Snabblänkar -->
+<div class="box" id="links-box">
+    <h2>Snabblänkar</h2>
+    <ul id="links-list">
+        <li>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <button class="delete-btn" onclick="removeLink(this)">×</button>
+        </li>
+        <li>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <button class="delete-btn" onclick="removeLink(this)">×</button>
+        </li>
+        <li>
+            <a href="https://www.example.com" target="_blank"><i class="fas fa-link"></i> Exempel Länk</a>
+            <button class="delete-btn" onclick="removeLink(this)">×</button>
+        </li>
+    </ul>    
 
-            <!-- Formulär som visas när man trycker på knappen -->
-            <div id="link-form" style="display: none;">
-                <input type="text" id="link-name" placeholder="Länkens namn">
-                <input type="text" id="link-url" placeholder="Länkens URL">
-                <button onclick="addLink()">Spara</button>
-                <button onclick="hideForm()">Avbryt</button>
-            </div>
-        </div>
+    <!-- Knapp för att öppna formuläret -->
+    <button id="show-form-btn"><img src="icons/add.ico" alt="Add link"> Lägg till länk</button>
+
+    <!-- Formulär som visas när man trycker på knappen -->
+    <div id="link-form" style="display: none;">
+        <input type="text" id="link-name" placeholder="Länkens namn">
+        <input type="text" id="link-url" placeholder="Länkens URL">
+        <button onclick="addLink()">Spara</button>
+        <button onclick="hideForm()">Avbryt</button>
+    </div>
+</div>
+
         
 <!-- Väder -->
 <div class="box" id="weather-box">
