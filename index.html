@@ -101,11 +101,11 @@
             <ul id="radio-list"></ul>
         </div>
 
-        <!-- Anteckningar -->
-        <div class="box" id="notes-box">
-            <h2>Anteckningar</h2>
-            <textarea id="notes" placeholder="Anteckna här..."></textarea>
-        </div>
+<!-- Anteckningar -->
+<div class="box" id="notes-box">
+    <h2>Anteckningar</h2>
+    <textarea id="notes" placeholder="Anteckna här..." oninput="saveNotes()" spellcheck="false"></textarea>
+</div>
 
         <!-- Bakgrundsbild Knapp -->
         <button class="nybildbtn" onclick="changeBackground()"><img src="icons/refresh.ico" alt="Uppdatera bilden"> Slumpa ny bakgrund</button>

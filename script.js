@@ -353,3 +353,18 @@ async function loadChannels() {
         console.error("Kunde inte hämta kanaler", error);
     }
 }
+
+
+    // Hämtar anteckningarna från localStorage om de finns
+    window.onload = function() {
+        const savedNotes = localStorage.getItem('notes');
+        if (savedNotes) {
+            document.getElementById('notes').value = savedNotes;
+        }
+    };
+
+    // Funktion för att spara anteckningar kontinuerligt i localStorage
+    function saveNotes() {
+        const notes = document.getElementById('notes').value;
+        localStorage.setItem('notes', notes);
+    }
