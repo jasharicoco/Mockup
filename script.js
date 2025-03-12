@@ -162,7 +162,7 @@ async function changeBackground() {
 
         const data = await response.json();
         
-        // ✅ Välj en slumpmässig bild från samlingen
+        // Välj en slumpmässig bild från samlingen
         const randomImage = data[Math.floor(Math.random() * data.length)];
 
         if (!randomImage || !randomImage.urls) {
@@ -187,12 +187,41 @@ async function loadWeather(latOrCity, lon = null) {
     const tomorrowDiv = document.getElementById("tomorrow");
     const thirdDayDiv = document.getElementById("third-day");
 
-    // Lägg till lang=sv för att få väderbeskrivning på svenska
-    let url = lon
-        ? `https://api.openweathermap.org/data/2.5/forecast?lat=${latOrCity}&lon=${lon}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608&lang=sv`
-        : `https://api.openweathermap.org/data/2.5/forecast?q=${latOrCity}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608&lang=sv`;
+    // Funktion för att få användarens position
+    function getUserLocation() {
+        return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            } else {
+                reject("Geolocation is not supported by this browser.");
+            }
+        });
+    }
+
+    // Standardvärde för stad om användaren inte tillåter platsåtkomst
+    const defaultCity = "Varberg";
 
     try {
+        let city = defaultCity;
+        let lat, lon;
+
+        // Försök att hämta användarens position
+        try {
+            const position = await getUserLocation();
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            // Om vi får positionen, logga och använd den
+            console.log(`Användaren är i ${position.coords.latitude}, ${position.coords.longitude}`);
+            city = "Din nuvarande plats";
+        } catch (error) {
+            console.log(`Kunde inte hämta användarens position, använder standardstad: ${defaultCity}`);
+        }
+
+        // Ladda väderdata
+        let url = lon
+            ? `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608&lang=sv`
+            : `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608&lang=sv`;
+
         let response = await fetch(url);
 
         if (!response.ok) {
@@ -245,8 +274,8 @@ async function loadWeather(latOrCity, lon = null) {
     }
 }
 
-// Exempel: Anropa funktionen med en stad
-loadWeather("Stockholm");
+// Anropa funktionen utan att behöva ange stad om platsen ska användas
+loadWeather();
 
 
 // RADIO
