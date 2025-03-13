@@ -1,23 +1,98 @@
+// =====================
+// HEADER: Klocka
+// =====================
+
+// Uppdaterar datum och tid varje sekund
+function updateDateTime() {
+    const now = new Date();
+
+    // Formaterar datumet
+    const options = {year: 'numeric', month: 'long', day: 'numeric'};
+    const formattedDate = now.toLocaleDateString('sv-SE', options);
+
+    // Formatera klockan (ex: 14:30:45)
+    const formattedTime = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+    
+    // Uppdatera elementen i HTML
+    document.querySelector(".date").textContent = formattedDate;
+    document.querySelector(".clock").textContent = formattedTime;
+}
+
+// Kör uppdatering av tid varje sekund
+setInterval(updateDateTime, 1000);
+
+// Kör funktionen direkt när sidan laddas för att visa aktuell tid
+updateDateTime();
 
 
+// =====================
+// TITEL: Dashboard
+// =====================
+
+// Hanterar redigering av dashboard-titeln
+document.addEventListener("DOMContentLoaded", () => {
+    const titleElement = document.getElementById("editable-title");
+
+    // Laddar eventuell tidigare sparad titel
+    const savedTitle = localStorage.getItem("dashboardTitle");
+    if (savedTitle) {
+        titleElement.textContent = savedTitle;
+    }
+
+    // Gör rubriken redigerbar vid klick
+    titleElement.addEventListener("click", () => {
+        const currentText = titleElement.textContent;
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = currentText;
+        input.style.fontSize = "2rem"; // Anpassar storleken
+
+        // Byt ut rubriken mot ett textfält
+        titleElement.replaceWith(input);
+        input.focus();
+
+        // Funktion för att spara den nya titeln när användaren trycker Enter eller klickar utanför
+        const saveTitle = () => {
+            const newText = input.value.trim() || "Min Dashboard"; // Standardtitel om inget anges
+            localStorage.setItem("dashboardTitle", newText);
+            titleElement.textContent = newText;
+            input.replaceWith(titleElement);
+        };
+
+        input.addEventListener("blur", saveTitle); // Spara när användaren klickar utanför
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                saveTitle(); // Spara vid Enter
+            }
+        });
+    });
+});
 
 
+// =====================
+// TABELLER: Länkar, Väder, Radio, Anteckningar och allt relaterat
+// =====================
 
+// LÄNKAR
+// Hanterar visning och borttagning av länkar
 document.addEventListener("DOMContentLoaded", () => {
     loadLinks(); 
     document.getElementById("show-form-btn").addEventListener("click", showForm);
 });
 
+// Visar formuläret för att lägga till en ny länk
 function showForm() {
     document.getElementById("link-form").style.display = "block";
     document.getElementById("show-form-btn").style.display = "none";
 }
 
+// Döljer formuläret för att lägga till en ny länk
 function hideForm() {
     document.getElementById("link-form").style.display = "none";
     document.getElementById("show-form-btn").style.display = "block";
 }
 
+// Lägg till en länk till listan och spara den i LocalStorage
 function addLink() {
     const linkName = document.getElementById("link-name").value.trim();
     const linkURL = document.getElementById("link-url").value.trim();
@@ -28,7 +103,7 @@ function addLink() {
         return;
     }
 
-    // Skapa nytt listobjekt med samma struktur som befintliga länkar
+    // Skapa nytt listobjekt för länken
     const listItem = document.createElement("li");
     listItem.innerHTML = `
         <a href="${linkURL}" target="_blank"><i class="fas fa-link"></i> ${linkName}</a>
@@ -37,15 +112,16 @@ function addLink() {
 
     linksList.appendChild(listItem);
 
-    // Spara i LocalStorage
+    // Spara länken i LocalStorage
     saveLink(linkName, linkURL);
 
-    // Rensa fält och göm formuläret
+    // Rensa fälten och göm formuläret
     document.getElementById("link-name").value = "";
     document.getElementById("link-url").value = "";
     hideForm();
 }
 
+// Ta bort en länk från listan och LocalStorage
 function removeLink(button) {
     const listItem = button.parentElement;
     const linkName = listItem.querySelector("a").innerText;
@@ -57,18 +133,21 @@ function removeLink(button) {
     listItem.remove();
 }
 
+// Spara länk i LocalStorage
 function saveLink(name, url) {
     let links = JSON.parse(localStorage.getItem("savedLinks")) || [];
     links.push({ name, url });
     localStorage.setItem("savedLinks", JSON.stringify(links));
 }
 
+// Ta bort en länk från LocalStorage
 function removeLinkFromStorage(name) {
     let links = JSON.parse(localStorage.getItem("savedLinks")) || [];
     links = links.filter(link => link.name !== name);
     localStorage.setItem("savedLinks", JSON.stringify(links));
 }
 
+// Ladda länkar från LocalStorage vid sidladdning
 function loadLinks() {
     const linksList = document.getElementById("links-list");
     let links = JSON.parse(localStorage.getItem("savedLinks")) || [];
@@ -84,104 +163,8 @@ function loadLinks() {
 }
 
 
-//Dashboard Title
-
-document.addEventListener("DOMContentLoaded", () => {
-    const titleElement = document.getElementById("editable-title");
-
-    // Ladda sparad rubrik om den finns
-    const savedTitle = localStorage.getItem("dashboardTitle");
-    if (savedTitle) {
-        titleElement.textContent = savedTitle;
-    }
-
-    // Gör rubriken redigerbar vid klick
-    titleElement.addEventListener("click", () => {
-        const currentText = titleElement.textContent;
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = currentText;
-        input.style.fontSize = "2rem"; // Anpassa storlek
-
-        // Byt ut rubriken mot input-fältet
-        titleElement.replaceWith(input);
-        input.focus();
-
-        // Spara ändring när användaren trycker Enter eller klickar utanför
-        const saveTitle = () => {
-            const newText = input.value.trim() || "Min Dashboard"; // Standardvärde om tomt
-            localStorage.setItem("dashboardTitle", newText);
-            titleElement.textContent = newText;
-            input.replaceWith(titleElement);
-        };
-
-        input.addEventListener("blur", saveTitle); // Spara vid klick utanför
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                saveTitle();
-            }
-        });
-    });
-});
-
-// Klocka
-
-function updateDateTime() {
-    const now = new Date();
-
-    // Formatera datum (ex: Måndag, 6 mars 2025)
-    const options = {year: 'numeric', month: 'long', day: 'numeric'};
-    const formattedDate = now.toLocaleDateString('sv-SE', options);
-
-    // Formatera klockan (ex: 14:30:45)
-    const formattedTime = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
-    // Uppdatera elementen i HTML
-    document.querySelector(".date").textContent = formattedDate;
-    document.querySelector(".clock").textContent = formattedTime;
-}
-
-// Uppdatera tiden varje sekund
-setInterval(updateDateTime, 1000);
-
-// Kör funktionen direkt vid start
-updateDateTime();
-
-
-
-// Bakgrundsbild
-
-// Funktion för att byta bakgrundsbild från Unsplash API med Fetch API
-async function changeBackground() {
-    const apiKey = 'E_1NnPtK1MqmSsNsI_z8Eb_5Gcpbu418ocfgWV1yvsw';
-    const apiUrl = `https://api.unsplash.com/collections/1913171/photos?client_id=${apiKey}`; // Standard
-    //const apiUrl = `https://api.unsplash.com/collections/8860674/photos?client_id=${apiKey}`; // Thailand
-
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
-
-        const data = await response.json();
-        
-        // Välj en slumpmässig bild från samlingen
-        const randomImage = data[Math.floor(Math.random() * data.length)];
-
-        if (!randomImage || !randomImage.urls) {
-            throw new Error("Ingen giltig bild hittades.");
-        }
-
-        const newBackgroundUrl = randomImage.urls.regular;
-        document.body.style.backgroundImage = `url(${newBackgroundUrl})`;
-
-        // Spara bakgrund i localStorage
-        localStorage.setItem('background', `url(${newBackgroundUrl})`);
-
-    } catch (error) {
-        console.error('Fel vid hämtning av bakgrundsbild:', error);
-    }
-}
-changeBackground();
-
-// Funktion för att ladda väderdata
+// VÄDER
+// Hämta och visa väderprognos
 async function loadWeather(latOrCity, lon = null) {
     const todayDiv = document.getElementById("today");
     const tomorrowDiv = document.getElementById("tomorrow");
@@ -198,7 +181,6 @@ async function loadWeather(latOrCity, lon = null) {
         });
     }
 
-    // Standardvärde för stad om användaren inte tillåter platsåtkomst
     const defaultCity = "Varberg";
 
     try {
@@ -210,14 +192,11 @@ async function loadWeather(latOrCity, lon = null) {
             const position = await getUserLocation();
             lat = position.coords.latitude;
             lon = position.coords.longitude;
-            // Om vi får positionen, logga och använd den
-            console.log(`Användaren är i ${position.coords.latitude}, ${position.coords.longitude}`);
-            city = "Din nuvarande plats";
         } catch (error) {
             console.log(`Kunde inte hämta användarens position, använder standardstad: ${defaultCity}`);
         }
 
-        // Ladda väderdata
+        // Ladda väderdata från OpenWeatherMap API
         let url = lon
             ? `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608&lang=sv`
             : `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=bd5e378503939ddaee76f12ad7a97608&lang=sv`;
@@ -248,13 +227,13 @@ async function loadWeather(latOrCity, lon = null) {
 
         // Uppdatera "Idag"
         todayDiv.querySelector("h3").innerText = "Idag";
-        todayDiv.querySelector("#today-temp").innerHTML = `<b>${today.main.temp}°C</b>`;
+        todayDiv.querySelector("#today-temp").innerHTML = `<b>${Math.round(today.main.temp)}°C</b>`;
         todayDiv.querySelector("#today-weather").innerText = getMainDescription(today.weather[0].main); // Kort väderbeskrivning
         todayDiv.querySelector("#today-icon").src = `https://openweathermap.org/img/wn/${today.weather[0].icon}.png`;
 
         // Uppdatera "Imorgon"
         tomorrowDiv.querySelector("h3").innerText = "Imorgon";
-        tomorrowDiv.querySelector("#tomorrow-temp").innerHTML = `<b>${tomorrow.main.temp}°C</b>`;
+        tomorrowDiv.querySelector("#tomorrow-temp").innerHTML = `<b>${Math.round(tomorrow.main.temp)}°C</b>`;
         tomorrowDiv.querySelector("#tomorrow-weather").innerText = getMainDescription(tomorrow.weather[0].main); // Kort väderbeskrivning
         tomorrowDiv.querySelector("#tomorrow-icon").src = `https://openweathermap.org/img/wn/${tomorrow.weather[0].icon}.png`;
 
@@ -264,7 +243,7 @@ async function loadWeather(latOrCity, lon = null) {
         let thirdDayName = daysOfWeek[thirdDayDate.getDay()];
 
         thirdDayDiv.querySelector("h3").innerText = thirdDayName;
-        thirdDayDiv.querySelector("#third-day-temp").innerHTML = `<b>${thirdDay.main.temp}°C</b>`;
+        thirdDayDiv.querySelector("#third-day-temp").innerHTML = `<b>${Math.round(thirdDay.main.temp)}°C</b>`;
         thirdDayDiv.querySelector("#third-day-weather").innerText = getMainDescription(thirdDay.weather[0].main); // Kort väderbeskrivning
         thirdDayDiv.querySelector("#third-day-icon").src = `https://openweathermap.org/img/wn/${thirdDay.weather[0].icon}.png`;
 
@@ -274,12 +253,10 @@ async function loadWeather(latOrCity, lon = null) {
     }
 }
 
-// Anropa funktionen utan att behöva ange stad om platsen ska användas
 loadWeather();
 
-
 // RADIO
-
+// Hämtar och visar radiokanaler
 document.addEventListener("DOMContentLoaded", function() {
     loadChannels();
 });
@@ -384,16 +361,52 @@ async function loadChannels() {
 }
 
 
-    // Hämtar anteckningarna från localStorage om de finns
-    window.onload = function() {
-        const savedNotes = localStorage.getItem('notes');
-        if (savedNotes) {
-            document.getElementById('notes').value = savedNotes;
-        }
-    };
-
-    // Funktion för att spara anteckningar kontinuerligt i localStorage
-    function saveNotes() {
-        const notes = document.getElementById('notes').value;
-        localStorage.setItem('notes', notes);
+// ANTECKNINGAR
+// Hämtar anteckningarna från localStorage om de finns
+window.onload = function() {
+    const savedNotes = localStorage.getItem('notes');
+    if (savedNotes) {
+        document.getElementById('notes').value = savedNotes;
     }
+};
+// Funktion för att spara anteckningar kontinuerligt i localStorage
+function saveNotes() {
+    const notes = document.getElementById('notes').value;
+    localStorage.setItem('notes', notes);
+}
+
+// =====================
+// DIVERSE
+// =====================
+
+// Bakgrund: Funktion för att byta bakgrundsbild från Unsplash's API
+async function changeBackground() {
+    const apiKey = 'E_1NnPtK1MqmSsNsI_z8Eb_5Gcpbu418ocfgWV1yvsw';
+    const apiUrl = `https://api.unsplash.com/collections/1913171/photos?client_id=${apiKey}`; // Standard
+    //const apiUrl = `https://api.unsplash.com/collections/8860674/photos?client_id=${apiKey}`; // Thailand
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
+
+        const data = await response.json();
+        
+        // Välj en slumpmässig bild från samlingen
+        const randomImage = data[Math.floor(Math.random() * data.length)];
+
+        if (!randomImage || !randomImage.urls) {
+            throw new Error("Ingen giltig bild hittades.");
+        }
+
+        const newBackgroundUrl = randomImage.urls.regular;
+        document.body.style.backgroundImage = `url(${newBackgroundUrl})`;
+
+        // Spara bakgrund i localStorage
+        localStorage.setItem('background', `url(${newBackgroundUrl})`);
+
+    } catch (error) {
+        console.error('Fel vid hämtning av bakgrundsbild:', error);
+    }
+}
+
+changeBackground();

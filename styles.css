@@ -1,3 +1,4 @@
+/* ==================== GLOBAL STIL ==================== */
 * {
     margin: 0;
     padding: 0;
@@ -17,79 +18,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.header {
-    display: flex;
-    justify-content: center;
-    /*Centrerahorisontellt*/align-items: center;
-    /*Centreravertikalt*/gap: 20px;
-    /*Avståndmellandatumochklocka*/position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.575);
-    /*Svartgenomskinligbakgrund*/padding: 4px 40px;
-    border-radius: 30px;
-    /*Rundadehörn*/font-size: 0.9rem;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-    /*Vittext*/;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-}
-
-.clock {
-    font-weight: bold; /* Fet text */
-}
-
-.date {
-    font-weight: normal; /* Vanlig text */
-}
-
-/* Rubrik för varje tabell */
-.box h2 {
-    font-size: 1.6rem; /* Större fontstorlek */
-    text-align: center; /* Centrerad text */
-    width: auto; /* Gör bredden automatiskt */
-    margin-top: 20px; /* Flytta rubriken lite längre ner i tabellen */
-    margin-bottom: 10px; /* Lite avstånd under rubriken */
-    font-weight: 400; /* Gör texten mycket smalare */
-}
-
-
-
-#change-bg-btn:hover {
-    background-color: #b30000;
-}
-
-/* Titel */
-#editable-title {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-#editable-title:hover {
-    color: #ff008cb9;
-}
-
-/* Dashboard container */
-.container {
-    text-align: center;
-}
-
-.dashboard {
-    display: flex;
-    justify-content: center; /* Centrerar innehållet horisontellt */
-    flex-wrap: wrap; /* Gör så att innehållet inte blir för trångt om det finns flera boxar */
-    gap: 20px; /* Ger ett mellanrum mellan boxarna */
-    margin: 0 auto; /* Centrerar innehållet på skärmen */
-}
-
 /* Box styling */
 .box {
     background-color: rgba(240, 240, 240, 0.287);
@@ -104,16 +32,105 @@ body {
     opacity: 0.8;
 }
 
-input, button, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #dddddd;
-    border-radius: 5px;
-    font-size: 1rem;
+.box h2 {
+    font-size: 1.6rem; /* Större fontstorlek */
+    text-align: center; /* Centrerad text */
+    width: auto; /* Gör bredden automatiskt */
+    margin-top: 20px; /* Flytta rubriken lite längre ner i tabellen */
+    margin-bottom: 10px; /* Lite avstånd under rubriken */
+    font-weight: 400; /* Gör texten mycket smalare */
 }
 
-/* Snabblänkar */
+#change-bg-btn:hover {
+    background-color: #b30000;
+}
+
+button {
+    position: relative; /* Behåll relativ position för att placera knappen inom tabellen */
+    background-color: #ffffff48; /* Behåll bakgrundens genomskinlighet */
+    color: #ffffff; /* Gör texten helt vit */
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem; /* Mindre textstorlek */
+    padding: 7px 10px; /* Minska padding för att göra knappen mindre */
+    margin-top: 20px; /* Justera för att placera knappen längre ner i tabellen */
+    width: 150px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+button img {
+    width: 15px;
+    height: 15px;
+    line-height: 10px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #d3d3d3;
+}
+
+.parent-container {
+    overflow: auto; /* Säkerställ att inget klipps bort */
+}
+
+/* ================= HEADER: Klocka ================= */
+.header {
+    display: flex;
+    justify-content: center; /* Centrerar horisontellt */
+    align-items: center; /* Centrerar vertikalt */
+    gap: 20px; /* Avstånd mellan datum och klocka */
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.575); /* Halvtransparent bakgrund */
+    padding: 4px 40px;
+    border-radius: 30px; /* Rundade hörn */
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.clock {
+    font-weight: bold; /* Fet text */
+}
+
+.date {
+    font-weight: normal; /* Vanlig text */
+}
+
+/* ================= TITEL: Dashboard ================= */
+.dashboard {
+    display: flex;
+    justify-content: center; /* Centrerar innehållet horisontellt */
+    flex-wrap: wrap; /* Gör så att innehållet inte blir för trångt om det finns flera boxar */
+    gap: 20px; /* Ger ett mellanrum mellan boxarna */
+    margin: 0 auto; /* Centrerar innehållet på skärmen */
+}
+
+#editable-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#editable-title:hover {
+    color: #ff008cb9;
+}
+
+.container {
+    text-align: center;
+}
+
+/* ================= TABELLER ================= */
+/* == Länkar == */
 #links-list {
     list-style-type: none;
     padding-left: 0;
@@ -121,21 +138,18 @@ input, button, textarea {
 
 #links-list li {
     padding: 10px;
-    background-color: #f0f0f0; /* Bakgrundsfärg för varje rad */
-    border-radius: 15px; /* Rundade hörn på varje rad */
+    background-color: #f0f0f0;
+    border-radius: 15px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Mellanrum mellan varje länk */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Skugga för djup */
-    transition: background-color 0.3s; /* Gör hover-effekten mjukare */
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    position: relative; /* Behövs för att delete-knappen ska kunna placeras absolut */
 }
 
 #links-list li:hover {
-    background-color: #e0e0e0; /* Bakgrundsfärgen ändras vid hover */
-}
-
-#links-list li:last-child {
-    margin-bottom: 0; /* Tar bort extra mellanrum på sista länken */
+    background-color: #e0e0e0;
 }
 
 #links-list a {
@@ -144,7 +158,11 @@ input, button, textarea {
     font-weight: bold;
     display: flex;
     align-items: center;
-    color: #333; /* Standard textfärg */
+    color: #333;
+}
+
+#links-list li:last-child {
+    margin-bottom: 0; /* Tar bort extra mellanrum på sista länken */
 }
 
 #links-list a i {
@@ -160,7 +178,6 @@ input, button, textarea {
     background-color: #333; /* Bakgrundsfärgen ändras vid hover */
     color: #fff; /* Textfärgen ändras vid hover */
 }
-
 
 /* YouTube Färger */
 #links-list a[href="https://www.youtube.com"] i {
@@ -210,101 +227,7 @@ input, button, textarea {
     cursor: pointer;
 }
 
-/* Se till att varje listobjekt är positionerat relativt */
-#links-list li {
-    position: relative; /* Behövs för att delete-knappen ska kunna placeras absolut */
-    padding: 10px;
-    background-color: #f0f0f0be;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
-}
-
-/* Notes Box */
-textarea {
-    background-color: #f0f0f0be;
-    height: 150px;
-    resize: vertical;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-/* Button Styles */
-button {
-    position: relative; /* Behåll relativ position för att placera knappen inom tabellen */
-    background-color: #ffffff48; /* Behåll bakgrundens genomskinlighet */
-    color: #ffffff; /* Gör texten helt vit */
-    border: none;
-    cursor: pointer;
-    font-size: 0.8rem; /* Mindre textstorlek */
-    padding: 7px 10px; /* Minska padding för att göra knappen mindre */
-    margin-top: 20px; /* Justera för att placera knappen längre ner i tabellen */
-    width: 150px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-}
-
-
-
-button img {
-    width: 15px;
-    height: 15px;
-    line-height: 10px;
-    text-align: center;
-}
-
-button:hover {
-    background-color: #d3d3d3;
-}
-
-.nybildbtn {
-    border-radius: 50px; /* Keep this one */
-    background: rgba(255, 255, 255, 0.575);
-    color: #000000; /* Svart text */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: inline-block;
-    width: auto;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
-}
-
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .dashboard {
-        grid-template-columns: repeat(3, 1fr); /* Tre kolumner på mindre skärmar */
-    }
-}
-
-@media (max-width: 900px) {
-    .dashboard {
-        grid-template-columns: repeat(2, 1fr); /* Två kolumner på ännu mindre skärmar */
-    }
-}
-
-@media (max-width: 600px) {
-    .dashboard {
-        grid-template-columns: 1fr; /* En kolumn på små skärmar, t.ex. telefoner */
-    }
-}
-
+/* == Väder == */
 #weather {
     font-weight: bold;
     display: flex;
@@ -313,14 +236,13 @@ button:hover {
 
 .weather-day {
     display: flex;
-    align-items: center; /* Justera för att hålla text och ikon i linje vertikalt */
-    margin-bottom: 15px; /* Lägg till lite utrymme mellan dagarna */
-    background-color: #f0f0f0be; /* Bakgrundsfärg */
-    border-radius: 15px; /* Runda hörn */
-    padding: 10px 15px; /* Minska padding för att minska höjden */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Skugga för djup */
-    height: auto; /* Låter höjden anpassas efter innehållet */
-    min-height: 70px; /* Sätt ett minimumvärde på höjden för att hålla ett bra avstånd */
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #f0f0f0be;
+    border-radius: 15px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 70px;
 }
 
 .weather-icon {
@@ -358,10 +280,9 @@ button:hover {
     background-color: #e0e0e0; /* Bakgrundsfärgen ändras vid hover */
 }
 
-
-/* RADIO */
+/* == Radio == */
 #radio-list {
-    list-style-type: none; /* Ta bort punkterna från listan */
+    list-style-type: none;
     padding-left: 0;
 }
 
@@ -371,7 +292,7 @@ button:hover {
     border-radius: 15px;
     margin-bottom: 15px;
     display: flex;
-    flex-direction: column; /* Ordna elementen vertikalt */
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -419,4 +340,41 @@ audio {
     color: inherit; /* Ärver färgen från föräldraelementet */
     text-decoration: none; /* Tar bort understrykningen */
     font-weight: bold; /* Behåller fetstil om önskat */
+}
+
+/* == Anteckningar == */
+input, button, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    background-color: #f0f0f0be;
+    height: 150px;
+    resize: vertical;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+/* ================= FOOTER: Slumpa bakgrund ================= */
+.nybildbtn {
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.575);
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    width: auto;
 }
