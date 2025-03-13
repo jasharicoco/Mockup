@@ -29,44 +29,19 @@ updateDateTime();
 // TITEL: Dashboard
 // =====================
 
-// Hanterar redigering av dashboard-titeln
-document.addEventListener("DOMContentLoaded", () => {
-    const titleElement = document.getElementById("editable-title");
-
-    // Laddar eventuell tidigare sparad titel
-    const savedTitle = localStorage.getItem("dashboardTitle");
-    if (savedTitle) {
-        titleElement.textContent = savedTitle;
-    }
-
-    // Gör rubriken redigerbar vid klick
-    titleElement.addEventListener("click", () => {
-        const currentText = titleElement.textContent;
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = currentText;
-        input.style.fontSize = "2rem"; // Anpassar storleken
-
-        // Byt ut rubriken mot ett textfält
-        titleElement.replaceWith(input);
-        input.focus();
-
-        // Funktion för att spara den nya titeln när användaren trycker Enter eller klickar utanför
-        const saveTitle = () => {
-            const newText = input.value.trim() || "Min Dashboard"; // Standardtitel om inget anges
-            localStorage.setItem("dashboardTitle", newText);
-            titleElement.textContent = newText;
-            input.replaceWith(titleElement);
-        };
-
-        input.addEventListener("blur", saveTitle); // Spara när användaren klickar utanför
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                saveTitle(); // Spara vid Enter
-            }
-        });
-    });
+// När användaren klickar på titeln, aktiveras redigeringsläge
+document.getElementById('title').addEventListener('click', function() {
+    // Lägg till klassen 'editing' till föräldraelementet
+    this.parentElement.classList.add('editing');
+    this.setAttribute('contenteditable', 'true');  // Gör titeln redigerbar
 });
+
+// När användaren klickar utanför elementet (blur), tas redigeringsläge bort
+document.getElementById('title').addEventListener('blur', function() {
+    this.parentElement.classList.remove('editing');
+    this.removeAttribute('contenteditable');  // Ta bort redigerbarhet
+});
+
 
 
 // =====================
