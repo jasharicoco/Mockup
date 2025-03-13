@@ -30,7 +30,6 @@ body {
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
     opacity: 0.8;
-    min-height: 150px; /* Sätt en minimi-höjd för att säkerställa att innehållet syns */
 }
 
 .box h2 {
@@ -81,10 +80,10 @@ button:hover {
 /* ================= HEADER: Klocka ================= */
 .header {
     display: flex;
+    position: fixed;
     justify-content: center; /* Centrerar horisontellt */
     align-items: center; /* Centrerar vertikalt */
     gap: 20px; /* Avstånd mellan datum och klocka */
-    position: absolute;
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
@@ -112,7 +111,10 @@ button:hover {
     color: #ffffff;
     text-align: center;
     margin-bottom: 30px;
+    word-wrap: break-word; /* Gör så att texten bryts vid behov */
+    word-break: break-word; /* Säkerställer att ord bryts vid behov */
 }
+
 
 #title:hover {
     color: #ff008cb9;
@@ -140,9 +142,6 @@ button:hover {
     color: #ffffff;
 }
 
-.container {
-    text-align: center;
-}
 
 /* ================= DASHBOARD ================= */
 .dashboard {
@@ -184,10 +183,6 @@ button:hover {
     display: flex;
     align-items: center;
     color: #333;
-}
-
-#links-list li:last-child {
-    margin-bottom: 0;
 }
 
 #links-list a i {
@@ -405,3 +400,86 @@ textarea {
 }
 
 /* ================= Responsiv Design ================= */
+@media (max-width: 480px) {
+    .header {
+        padding: 5px 10px;
+        top: 5px;
+    }
+
+    #title {
+        margin-bottom: 15px;
+    }
+
+    .box {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .nybildbtn {
+        width: 200px;
+        padding: 5px 10px;
+        margin: 0 auto; /* Centrerar knappen horisontellt */
+        display: block; /* Gör knappen som en blocknivå för att kunna centreras */
+    }
+
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .header {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
+    }
+
+    .dashboard {
+        grid-template-columns: repeat(1, 1fr); /* 1 column */
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: repeat(1, 1fr); /* 1 column */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    .header {
+        padding: 5px 10px;
+        top: 5px;
+    }
+
+    #title {
+        margin-bottom: 15px;
+    }
+
+    .box {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .nybildbtn {
+        width: 200px;
+        padding: 5px 10px;
+        margin: 0 auto; /* Centrerar knappen horisontellt */
+        display: block; /* Gör knappen som en blocknivå för att kunna centreras */
+    }
+
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .header {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
+    }
+}
