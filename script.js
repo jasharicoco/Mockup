@@ -357,8 +357,8 @@ function saveNotes() {
 // Bakgrund: Funktion för att byta bakgrundsbild från Unsplash's API
 async function changeBackground() {
     const apiKey = 'E_1NnPtK1MqmSsNsI_z8Eb_5Gcpbu418ocfgWV1yvsw';
-    const apiUrl = `https://api.unsplash.com/collections/1913171/photos?client_id=${apiKey}`; // Standard
-    //const apiUrl = `https://api.unsplash.com/collections/8860674/photos?client_id=${apiKey}`; // Thailand
+    //const apiUrl = `https://api.unsplash.com/collections/1913171/photos?client_id=${apiKey}`; // Standard
+    const apiUrl = `https://api.unsplash.com/collections/8860674/photos?client_id=${apiKey}`; // Thailand
 
     try {
         const response = await fetch(apiUrl);
